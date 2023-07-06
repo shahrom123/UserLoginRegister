@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+.font-family-karla { font-family: karla; }
+.bg-sidebar { background: #3d68ff; }
+.cta-btn { color: #3d68ff; }
+.upgrade-btn { background: #1947ee; }
+.upgrade-btn:hover { background: #0038fd; }
+.active-nav-link { background: #1947ee; }
+.nav-item:hover { background: #1947ee; }
+.account-link:hover { background: #3d68ff; }
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
