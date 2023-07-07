@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebMvc.Models;
 
 namespace WebMvc.Controllers;
 
@@ -15,13 +14,13 @@ public class HomeController : Controller
     } 
    
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")  ]
     public IActionResult Secret()
     {
-        return View();
+        return View(); 
     }
 
-    [Authorize(Roles = "User")]
+    [Authorize(Roles = "Manager")]
     public IActionResult OnlyManager()
     {
         return View();

@@ -21,12 +21,30 @@ public class AccountController:Controller
    {
       return View(); 
    }
+
+   public IActionResult AccessDenied() => View();
+  
    [HttpGet]
    public IActionResult Register()
    {
       return View(new UserRegisterDto());
    }
-
+   
+   [HttpPost]
+   public async Task<IActionResult> Register(UserRegisterDto model)
+   {
+      if (!ModelState.IsValid)
+      {
+         return View(model); 
+      } 
+      if(ModelState.IsValid)
+      {
+         await _accountService.RegisterAsync(model);
+         return RedirectToAction("Login"); 
+      }
+      return View(model); 
+   }
+   [HttpGet]
    public IActionResult Login(string? returnUrl)
    {
       return View(new UserLoginDto()
@@ -35,7 +53,7 @@ public class AccountController:Controller
       });
    }
 
-   [HttpGet]
+   [HttpPost]
    public async Task<IActionResult> LoginAsync(UserLoginDto model)
    {
       if (!ModelState.IsValid)
@@ -55,20 +73,7 @@ public class AccountController:Controller
       }
       return View(model);
    }
-   [HttpPost]
-   public async Task<IActionResult> Register(UserRegisterDto model)
-   {
-      if (!ModelState.IsValid)
-      {
-         return View(model); 
-      } 
-      if(ModelState.IsValid)
-      {
-         await _accountService.RegisterAsync(model);
-         return RedirectToAction("Login"); 
-      }
-      return View(model); 
-   }
+
    
    public async Task<IActionResult> LogOutAsync()
    {
