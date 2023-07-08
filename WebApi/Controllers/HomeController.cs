@@ -5,18 +5,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApi.Controllers;
 
 public class HomeController : BaseController
+
 {
     public HomeController()
     {
         
     }
 
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] 
     [HttpGet("SecretData")]
-    public string SecretData()
+    // Method for testing
+    public IActionResult SecretData()
     {
-        return "this data is secret";
-    }
-    
-    
+        return Ok("Secret Data");  
+    } 
 }
+
