@@ -11,13 +11,13 @@
 </head>
 <body>
 <header>
-    <nav class="  navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+     <nav class="  navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class=" flex gap-2 justify-content-between">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Hr Application</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+            </button> 
             <div class=" flex ">
                 <ul class="navbar-nav flex ">
                     <li class="nav-item">
@@ -32,15 +32,21 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                    </li>
+                  
+                  
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">LogOut</a>
+                    </li> 
+                    
+                       <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
                     </li>
+                   
+                          <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                    </li> 
+                    
+                   
                 </ul>
             </div>
         </div>
@@ -53,9 +59,9 @@
 </div>
 
 <footer class="border-top footer text-muted">
-    <div class="container">
+    @* <div class="container">
         &copy; 2023 - WebMvc - <a asp-area="" asp-controller="Home" asp-action="Index">Register</a>
-    </div>
+    </div> *@
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

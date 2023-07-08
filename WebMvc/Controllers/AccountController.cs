@@ -7,13 +7,11 @@ namespace WebMvc.Controllers;
 
 public class AccountController:Controller
 {
-   private readonly UserManager<IdentityUser> _userManager;
    private readonly SignInManager<IdentityUser> _signInManager;
    private readonly IAccountService _accountService;
 
-   public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IAccountService accountService)
+   public AccountController(SignInManager<IdentityUser> signInManager, IAccountService accountService)
    {
-      _userManager = userManager;
       _signInManager = signInManager;
       _accountService = accountService;
    }
@@ -37,12 +35,18 @@ public class AccountController:Controller
       {
          return View(model); 
       } 
-      if(ModelState.IsValid)
-      {
-         await _accountService.RegisterAsync(model);
+      var response=  await _accountService.RegisterAsync(model);
+      
+       if(response.StatusCode == System.Net.HttpStatusCode.OK)
+       {
          return RedirectToAction("Login"); 
-      }
-      return View(model); 
+       }
+       else
+       {
+          ModelState.AddModelError("Password",response.Errors.FirstOrDefault());
+          return View(model); 
+       }
+     
    }
    [HttpGet]
    public IActionResult Login(string? returnUrl)
@@ -56,25 +60,27 @@ public class AccountController:Controller
    [HttpPost]
    public async Task<IActionResult> LoginAsync(UserLoginDto model)
    {
-      if (!ModelState.IsValid)
+      if (!ModelState.IsValid)return View(model);  
+         var response = await _accountService.LoginAsync(model);
+      if (response.StatusCode == System.Net.HttpStatusCode.OK)
       {
+         if (string.IsNullOrEmpty(model.ReturnUrl) == true)
+         {
+            return RedirectToAction("Index");
+         }
+         else
+         {
+            return Redirect(model.ReturnUrl);
+         }
+      }
+      else
+      {
+         ModelState.AddModelError("ConfirmPassword",response.Errors.FirstOrDefault());
          return View(model);
       }
-
-      if (ModelState.IsValid)
-      {
-         await _accountService.LoginAsync(model);
-         return RedirectToAction("Index", "Home");
-      }
-
-      if (string.IsNullOrEmpty(model.ReturnUrl) == true)
-      {
-         return RedirectToAction("Index");
-      }
-      return View(model);
    }
 
-   
+
    public async Task<IActionResult> LogOutAsync()
    {
       await _signInManager.SignOutAsync();
