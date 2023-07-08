@@ -38,7 +38,7 @@ public class AccountService : IAccountService
             if (result.Succeeded)
             {
                 // await _userManager.AddToRoleAsync(user, "Manager");
-                return new Response<IdentityResult>(result);
+                return new Response<IdentityResult>(result); 
             }
             else
             {

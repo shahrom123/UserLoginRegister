@@ -34,7 +34,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(config =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,option =>
     {
-        option.LoginPath = "/account/login";
+        option.LoginPath = "/account/Login"; 
         option.AccessDeniedPath = "/account/accessDenied";
         option.Cookie.Name = "AuthCookie";
 

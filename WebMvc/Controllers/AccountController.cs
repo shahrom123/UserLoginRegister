@@ -66,7 +66,7 @@ public class AccountController:Controller
       {
          if (string.IsNullOrEmpty(model.ReturnUrl) == true)
          {
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home"); 
          }
          else
          {
@@ -79,8 +79,7 @@ public class AccountController:Controller
          return View(model);
       }
    }
-
-
+   
    public async Task<IActionResult> LogOutAsync()
    {
       await _signInManager.SignOutAsync();

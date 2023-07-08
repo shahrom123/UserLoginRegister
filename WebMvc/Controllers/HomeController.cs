@@ -12,9 +12,8 @@ public class HomeController : Controller
     {
         _logger = logger;
     } 
-   
-
-    [Authorize(Roles = "Admin")  ]
+    
+    [Authorize(Roles = "Admin") ]
     public IActionResult Secret()
     {
         return View(); 
