@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApi.Controllers;
 
 public class AccountController:BaseController
+
+
+public class AccountController : BaseController
+
 {
     private readonly IAccountService _accountService;
 
@@ -14,6 +18,7 @@ public class AccountController:BaseController
     {
         _accountService = accountService;
     }
+
 
     [HttpPost("Login")]
     public async Task<Response<string>> Login([FromBody]JWTLoginDto login)
@@ -25,6 +30,5 @@ public class AccountController:BaseController
     public async Task<Response<IdentityResult>> Register([FromBody]UserRegisterDto model)
     {
         return await _accountService.RegisterAsync(model); 
-    }
-    
+    } 
 }

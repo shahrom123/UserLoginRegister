@@ -4,12 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
 
-public class HomeController:BaseController
+public class HomeController : BaseController
+
 {
     public HomeController()
     {
         
     }
+
     
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] 
     [HttpGet("SecretData")]
@@ -19,3 +21,4 @@ public class HomeController:BaseController
         return Ok("Secret Data");  
     } 
 }
+
