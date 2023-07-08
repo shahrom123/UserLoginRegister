@@ -8,6 +8,6 @@ public interface IAccountService
 {
     Task<Response<IdentityResult>> RegisterAsync(UserRegisterDto model);
     Task<Response<IdentityUser>> LoginAsync(UserLoginDto model);
-    Task<Response<string>>JWTLogin(JWTLoginDto model);
+    Task<Response<string>> JWTLogin(JWTLoginDto model);
 
 }
